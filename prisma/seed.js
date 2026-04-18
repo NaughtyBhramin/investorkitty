@@ -1,7 +1,12 @@
 const { PrismaClient } = require('@prisma/client');
+const bcrypt = require('bcrypt');
 const prisma = new PrismaClient();
 
 async function main() {
+  // Hash demo passwords
+  const founderPasswordHash = await bcrypt.hash('demo123founder', 10);
+  const investorPasswordHash = await bcrypt.hash('demo123investor', 10);
+
   const seeker = await prisma.user.upsert({
     where: { email: 'founder@investorkitty.demo' },
     update: {},
@@ -10,7 +15,7 @@ async function main() {
       name: 'Founder Demo',
       role: 'SEEKER',
       emailVerified: new Date(),
-      passwordHash: null
+      passwordHash: founderPasswordHash
     }
   });
 
@@ -22,7 +27,7 @@ async function main() {
       name: 'Investor Demo',
       role: 'INVESTOR',
       emailVerified: new Date(),
-      passwordHash: null
+      passwordHash: investorPasswordHash
     }
   });
 

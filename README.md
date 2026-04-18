@@ -33,6 +33,18 @@ A production-ready web application connecting entrepreneurs and investors with s
 - npm or yarn
 - Hostinger account (for deployment)
 
+## 🎯 Demo Credentials
+
+**Founder Account (Seeker)**
+- Email: `founder@investorkitty.demo`
+- Password: `demo123founder`
+
+**Investor Account**
+- Email: `investor@investorkitty.demo`
+- Password: `demo123investor`
+
+Use these credentials to explore the complete platform workflow, including discovery, matching, messaging, and deal tracking.
+
 ## 🚀 Local Development Setup
 
 1. **Clone and install dependencies**:
@@ -57,11 +69,12 @@ A production-ready web application connecting entrepreneurs and investors with s
    # Edit .env.local with your values
    ```
 
-4. **Run Prisma migrations**:
+4. **Run Prisma migrations and seed demo data**:
    ```bash
    npx prisma migrate dev
    npx prisma db seed
    ```
+   The seed command creates demo user accounts (see Demo Credentials section above).
 
 5. **Start development server**:
    ```bash
