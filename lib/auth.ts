@@ -29,12 +29,40 @@ export const authOptions: AuthOptions = {
         password: { label: 'Password', type: 'password' }
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials.password) return null;
-        const user = await prisma.user.findUnique({ where: { email: credentials.email } });
-        if (!user || !user.passwordHash) return null;
-        const isValid = await bcrypt.compare(credentials.password, user.passwordHash);
-        if (!isValid) return null;
-        return user;
+        try {
+          console.log('[AUTH] Credentials authorize attempt:', { email: credentials?.email });
+
+          if (!credentials?.email || !credentials.password) {
+            console.log('[AUTH] Missing credentials - email or password is empty');
+            return null;
+          }
+
+          const user = await prisma.user.findUnique({ where: { email: credentials.email } });
+
+          if (!user) {
+            console.log('[AUTH] User not found:', credentials.email);
+            return null;
+          }
+
+          if (!user.passwordHash) {
+            console.log('[AUTH] User exists but has no password hash:', credentials.email);
+            return null;
+          }
+
+          console.log('[AUTH] Attempting bcrypt compare for user:', credentials.email);
+          const isValid = await bcrypt.compare(credentials.password, user.passwordHash);
+
+          if (!isValid) {
+            console.log('[AUTH] Password mismatch for user:', credentials.email);
+            return null;
+          }
+
+          console.log('[AUTH] Credentials valid. User authenticated:', credentials.email);
+          return user;
+        } catch (error) {
+          console.error('[AUTH] Error in credentials authorize:', error);
+          return null;
+        }
       }
     })
   ],

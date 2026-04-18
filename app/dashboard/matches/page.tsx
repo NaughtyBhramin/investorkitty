@@ -85,7 +85,7 @@ export default function DashboardMatchesPage() {
 
   return (
     <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-      <div className="rounded-[2rem] border border-slate-200/80 bg-white p-10 shadow-sm shadow-slate-200/50 dark:border-slate-800/80 dark:bg-slate-900">
+      <div className="rounded-[2rem] border border-slate-200/80 bg-white p-10 shadow-sm shadow-slate-200/50 dark:border-slate-800/80 dark:bg-secondary dark:shadow-slate-900/50">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-sm uppercase tracking-[0.24em] text-brand-600">Matches</p>

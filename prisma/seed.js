@@ -9,7 +9,7 @@ async function main() {
 
   const seeker = await prisma.user.upsert({
     where: { email: 'founder@investorkitty.demo' },
-    update: {},
+    update: { passwordHash: founderPasswordHash },
     create: {
       email: 'founder@investorkitty.demo',
       name: 'Founder Demo',
@@ -21,7 +21,7 @@ async function main() {
 
   const investor = await prisma.user.upsert({
     where: { email: 'investor@investorkitty.demo' },
-    update: {},
+    update: { passwordHash: investorPasswordHash },
     create: {
       email: 'investor@investorkitty.demo',
       name: 'Investor Demo',
@@ -43,7 +43,9 @@ async function main() {
       location: 'Bangalore, India',
       website: 'https://kitty-labs.example',
       linkedIn: 'https://linkedin.com/in/founder-demo',
-      kittyScore: 74
+      kittyScore: 74,
+      traction: { monthlyUsers: 3200, revenue: 85000 },
+      teamMembers: ['Founder', 'CTO']
     },
     create: {
       userId: seeker.id,
@@ -97,6 +99,9 @@ async function main() {
     }
   });
 
+  console.log('[SEED] Demo accounts created successfully with passwords');
+  console.log('[SEED] Founder: founder@investorkitty.demo / demo123founder');
+  console.log('[SEED] Investor: investor@investorkitty.demo / demo123investor');
   console.log('Seed completed.');
 }
 

@@ -2,9 +2,8 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
 export default function DashboardIndex() {
-  return (
     <section className="mx-auto max-w-4xl px-4 py-24 sm:px-6">
-      <div className="rounded-[2rem] border border-slate-200/80 bg-white p-10 shadow-sm shadow-slate-200/50 dark:border-slate-800/80 dark:bg-slate-900">
+      <div className="rounded-[2rem] border border-slate-200/80 bg-white p-10 shadow-sm shadow-slate-200/50 dark:border-slate-800/80 dark:bg-secondary dark:shadow-slate-900/50">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h1 className="text-4xl font-semibold text-slate-950 dark:text-white">Dashboard home</h1>
@@ -27,5 +26,4 @@ export default function DashboardIndex() {
         </div>
       </div>
     </section>
-  );
 }

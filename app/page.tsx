@@ -26,7 +26,7 @@ export default function HomePage() {
     <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
       <div className="grid gap-16 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
         <div className="space-y-8">
-          <div className="inline-flex items-center rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1 text-sm font-semibold text-emerald-700 shadow-sm shadow-emerald-100">
+          <div className="inline-flex items-center rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1 text-sm font-semibold text-emerald-700 shadow-sm shadow-emerald-100 dark:border-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 dark:shadow-emerald-900">
             Launch-ready fundraising platform
           </div>
           <div className="space-y-6">

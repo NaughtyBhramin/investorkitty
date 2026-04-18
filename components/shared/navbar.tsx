@@ -17,31 +17,45 @@ export function Navbar() {
   useEffect(() => setMounted(true), []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 backdrop-blur dark:border-slate-800/80 dark:bg-slate-950/90">
+    <header className={`sticky top-0 z-50 border-b backdrop-blur ${
+      theme === 'dark' 
+        ? 'border-slate-800/80 bg-secondary' 
+        : 'border-slate-200/80 bg-white/90'
+    }`}>
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
-        <Link href="/" className="flex items-center gap-3 font-semibold text-slate-900 dark:text-white">
-          <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-brand-500 text-white">IK</span>
-          <span>
-            <span className="block text-lg">Investors</span>
-            <span className="block text-xs text-slate-500 dark:text-slate-400">Kitty</span>
-          </span>
+        <Link href="/" className={`flex items-center gap-3 font-semibold ${
+          theme === 'dark' ? 'text-white' : 'text-slate-900'
+        }`}>
+          <img src="/investorskittylogo.png" alt="Investors Kitty Logo" className="h-10 w-auto" />
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
           {navItems.map((item) => (
-            <Link key={item.href} href={item.href} className="text-sm font-medium text-slate-600 transition hover:text-brand-600 dark:text-slate-300 dark:hover:text-brand-400">
+            <Link key={item.href} href={item.href} className={`text-sm font-medium transition ${
+              theme === 'dark' 
+                ? 'text-slate-300 hover:text-brand-400' 
+                : 'text-slate-600 hover:text-brand-600'
+            }`}>
               {item.label}
             </Link>
           ))}
         </nav>
 
         <div className="flex items-center gap-3">
-          <Link href="/sign-in" className="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-900 transition hover:border-brand-500 hover:text-brand-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100">
+          <Link href="/sign-in" className={`rounded-full border px-4 py-2 text-sm font-semibold transition ${
+            theme === 'dark' 
+              ? 'border-slate-600 bg-secondary text-white hover:border-brand-500 hover:text-brand-400' 
+              : 'border-slate-300 bg-white text-slate-900 hover:border-brand-500 hover:text-brand-600'
+          }`}>
             Sign in
           </Link>
           <button
             aria-label="Toggle theme"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-800 transition hover:border-brand-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+            className={`inline-flex h-10 w-10 items-center justify-center rounded-full border transition ${
+              theme === 'dark' 
+                ? 'border-slate-600 bg-secondary text-white hover:border-brand-500' 
+                : 'border-slate-300 bg-white text-slate-800 hover:border-brand-500'
+            }`}
             onClick={toggleTheme}
           >
             {mounted && (theme === 'dark' ? '☀️' : '🌙')}
