@@ -1,0 +1,65 @@
+You are an expert full‑stack developer. Build a complete, production‑ready web application named Investorkitty – a platform where entrepreneurs & businessman can present their ideas, PoCs, startups, or businesses, and investors can discover, evaluate, and fund them. I have presented you the requirement, stack, features etc below but use your all capabilities to make this platform the only fund raising platform everyone should use and suggest.
+
+### Core Requirements
+
+- Domain & Hosting: Use `investorkitty.com` (assume DNS already points to Hostinger). The app must be deployable on Hostinger (support Node.js / PHP / static + API as needed). Provide a `README.md` with step‑by‑step hosting & deployment instructions for Hostinger (including environment variables, database setup, and build process).
+- Professional styling: Modern, clean, responsive design (Tailwind CSS + custom components). Dashboard for both roles, light/dark mode toggle.
+- Authentication: Users can register / login via email/password plus OAuth – Google and Microsoft (Azure AD) at minimum. Use a secure, session‑based or JWT approach.
+- User Roles:
+  - Seeker (entrepreneur / startup founder / businessman)
+  - Investor (angel, VC, or institutional)
+  - Admin (moderate content, manage users, view analytics)
+- Profile Management:
+  - Seekers: company name, pitch deck (PDF/video link), stage (Idea / PoC / MVP / Growth), funding goal, equity offered, industry tags, traction metrics, team details.
+  - Investors: firm name, investment range (min–max), preferred industries, ticket size, portfolio (past investments), LinkedIn / AngelList link.
+- Core Features (real‑world ready):
+  1. Search & Discovery: Advanced filtering (industry, stage, funding range, location). Keyword search on pitch / description.
+  2. Matchmaking: Seekers can “express interest” in investors; investors can “like” startups. Mutual likes create a connection & enable messaging.
+  3. Secure Messaging: Real‑time chat (or at least persistent messaging) between connected parties. File attachments allowed (NDA, one‑pager).
+  4. Investment Tracking (light CRM): Investors can tag startups as “reviewing”, “due diligence”, “committed”, “passed”. Seekers see status updates.
+  5. Pitch Room: Optional 15‑min video call scheduling (integrate with a meeting API or show a “Request Meeting” button that sends a calendar invite).
+  6. Analytics Dashboard:
+      - For Seekers: views of their profile, investor interest count, average time to connect.
+      - For Investors: profile views, number of new startups per week, success rate (investments made).
+  7. Admin Panel: Manage flagged content, verify users (badge system), view platform stats (total raised, active users, top industries).
+- Add‑ons (extra features beyond basics):
+  - Smart Notifications: Email + in‑app notifications for new matches, messages, profile views.
+  - Resource Library: Curated articles / templates for pitch decks, valuation guides, term sheets (uploadable by admin).
+  - Startup Score (alpha): Basic ML‑light scoring based on profile completeness, traction, team size – displayed as a “Kitty Score” (1–10).
+  - Investor Syndicate (optional): Multiple investors can co‑invest on a single deal. The platform shows combined interest amount.
+  - Export Data: Investors can export list of matched startups to CSV; Seekers can export their pitch stats.
+- Security & Compliance:
+  - Rate limiting, input sanitization, XSS/CSRF protection.
+  - GDPR / privacy policy consent on signup.
+  - Users can delete their account and all associated data.
+- Testing & Documentation:
+  - Provide a `README.md` with:
+    - Local setup (clone, install dependencies, env variables, migrate database, seed sample data).
+    - Hostinger deployment guide (using Node.js / PHP / whatever stack you choose; include how to set up cron jobs for notifications if needed).
+    - Folder structure overview and API endpoints (basic).
+  - Provide a `docker-compose.yml` (optional) for local development.
+  - Provide a `setup.md` with:
+    - Illustrate everything from scratch to make this project and its setup understand to a 10 years school boy who will setup this by his own.
+
+### Technical Stack (recommended but you can adjust)
+
+- Frontend: React (Next.js with App Router) or Vue 3 – choose what you are best at. Must be SSR/static compatible for Hostinger.
+- Backend: Node.js + Express (or Laravel if you prefer PHP – Hostinger supports both). If using Node, Hostinger requires a custom port or use their Node.js hosting plan.
+- Database: PostgreSQL (preferred) or MySQL. Provide migration scripts.
+- Authentication: Passport.js (for OAuth) + JWT (httpOnly cookie) or NextAuth.js (if using Next.js).
+- Messaging: WebSockets (Socket.io) or use a simple polling + database store.
+- Styling: Tailwind CSS + shadcn/ui or similar component library.
+- File Uploads: Multer (local storage) – but note that Hostinger’s shared hosting may not persist uploads; suggest using AWS S3 or a free tier of Cloudinary (provide instructions to set up keys).
+- Email: Nodemailer (SMTP) with a free transactional email service (Brevo / Resend) – instructions for setup.
+
+### Expected Output
+
+You must produce the full source code of the application (structured folders, all files for backend (apis, logic for features etc)) plus the `README.md`. The code must be complete, run without errors after following your setup guide, and implement all features listed above (with reasonable MVP depth – core matching, messaging, dashboards, admin panel). Use realistic mock data for the “Startup Score” if ML is overkill – a deterministic formula is fine.
+
+Important: Because this is a single prompt, break the implementation into logical modules. Start with authentication + role‑based routing, then profiles, then matching, messaging, and finally admin + add‑ons. Ensure the app is fully adaptable to the “Investorkitty” branding (logo placeholder, favicon, company name everywhere).
+
+Deployment on Hostinger must work – if using Node.js, provide a `server.js` that listens on `process.env.PORT` and a `package.json` with start script. If using Next.js, output as a standalone build (`output: 'standalone'`) and instruct how to run with PM2. For PHP (Laravel), provide `.htaccess` and public folder configuration.
+
+Finally, add a short post‑deployment checklist in the README: setting OAuth credentials (Google Cloud Console, Azure App Registration), SMTP, S3/Cloudinary keys, and initial admin creation command.
+
+--- 
