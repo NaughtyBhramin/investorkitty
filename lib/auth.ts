@@ -1,4 +1,5 @@
-import NextAuth, { AuthOptions } from 'next-auth';
+import NextAuth, { AuthOptions, Session } from 'next-auth';
+import { JWT } from 'next-auth/jwt';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
 import GitHubProvider from 'next-auth/providers/github';
@@ -67,21 +68,50 @@ export const authOptions: AuthOptions = {
     })
   ],
   session: {
-    strategy: 'database'
+    strategy: 'database',
+    maxAge: 30 * 24 * 60 * 60, // 30 days
+    updateAge: 24 * 60 * 60 // 24 hours
   },
   callbacks: {
-    async session({ session, user }: any) {
+    async session({ session, user }: { session: Session; user: any }) {
       if (session.user) {
         session.user.id = user.id;
         session.user.role = user.role;
       }
       return session;
+    },
+    async jwt({ token, user, profile }: { token: JWT; user?: any; profile?: any }) {
+      if (user) {
+        token.id = user.id;
+        token.role = user.role;
+      }
+      if (profile) {
+        token.picture = profile.image;
+      }
+      return token;
+    },
+    async signIn({ user, account, profile }: any) {
+      // Log successful sign-in
+      console.log('[AUTH] Sign in successful:', { email: user?.email, provider: account?.provider });
+      return true;
+    },
+    async redirect({ url, baseUrl }) {
+      // If the url is relative, prepend the baseUrl
+      if (url.startsWith('/')) return `${baseUrl}${url}`;
+
+      // If the url is already absolute and on the same domain, allow it
+      if (new URL(url).origin === baseUrl) return url;
+
+      // Default to home
+      return baseUrl;
     }
   },
   pages: {
-    signIn: '/sign-in'
+    signIn: '/sign-in',
+    error: '/sign-in'
   },
-  secret: process.env.NEXTAUTH_SECRET
+  secret: process.env.NEXTAUTH_SECRET,
+  debug: process.env.NODE_ENV === 'development'
 };
 
 const handler = NextAuth(authOptions);

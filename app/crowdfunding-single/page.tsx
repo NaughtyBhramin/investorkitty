@@ -224,13 +224,13 @@ export default function CrowdfundingSinglePage() {
                 {isInvestor ? (
                   <>
                     <Button className="w-full">Express Interest</Button>
-                    <Button variant="outline" className="w-full">Save to Portfolio</Button>
-                    <Button variant="outline" className="w-full">Schedule Meeting</Button>
+                    <Button variant="secondary" className="w-full">Save to Portfolio</Button>
+                    <Button variant="secondary" className="w-full">Schedule Meeting</Button>
                   </>
                 ) : (
                   <>
                     <Button className="w-full">Connect as Founder</Button>
-                    <Button variant="outline" className="w-full">Learn More</Button>
+                    <Button variant="secondary" className="w-full">Learn More</Button>
                   </>
                 )}
               </div>

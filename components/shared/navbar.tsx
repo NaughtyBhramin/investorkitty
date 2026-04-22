@@ -76,7 +76,7 @@ export function Navbar() {
         </Link>
 
         {hasSubmenu ? (
-          <div className={`pointer-events-none absolute left-0 top-full z-50 mt-2 hidden min-w-[220px] rounded-3xl border bg-white p-3 shadow-lg shadow-slate-900/5 transition duration-150 group-hover:block dark:border-slate-700 dark:bg-slate-950 dark:shadow-slate-950/20 ${
+          <div className={`absolute left-0 top-full z-50 mt-0 hidden min-w-[220px] rounded-3xl border bg-white p-3 shadow-lg shadow-slate-900/5 transition duration-150 group-hover:block dark:border-slate-700 dark:bg-slate-950 dark:shadow-slate-950/20 ${
             theme === 'dark' ? 'border-slate-800' : 'border-slate-200'
           }`}>
             {item.submenu?.map((submenuItem) => {
@@ -114,7 +114,7 @@ export function Navbar() {
           </Link>
           <button
             type="button"
-            className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white p-2 text-slate-900 transition hover:border-brand-500 hover:text-brand-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:border-brand-400"
+            className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white p-2 text-slate-900 transition hover:border-brand-500 hover:text-brand-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:border-brand-400 md:hidden"
             onClick={() => setMobileOpen((current) => !current)}
             aria-label="Toggle mobile menu"
           >
@@ -134,7 +134,7 @@ export function Navbar() {
                     ? 'border-slate-600 bg-secondary text-white hover:border-brand-500 hover:text-brand-400'
                     : 'border-slate-300 bg-white text-slate-900 hover:border-brand-500 hover:text-brand-600'
                 }`}
-                onClick={() => signOut()}
+                onClick={() => signOut({ callbackUrl: '/sign-in' })}
               >
                 Logout
               </button>
@@ -235,7 +235,7 @@ export function Navbar() {
                     type="button"
                     className="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-900 transition hover:border-brand-500 hover:text-brand-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
                     onClick={() => {
-                      signOut();
+                      signOut({ callbackUrl: '/sign-in' });
                       setMobileOpen(false);
                     }}
                   >

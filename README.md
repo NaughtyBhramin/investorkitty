@@ -36,12 +36,28 @@ A production-ready web application connecting entrepreneurs and investors with s
 ## 🎯 Demo Credentials
 
 **Founder Account (Seeker)**
-- Email: `founder@investorkitty.demo`
-- Password: `demo123founder`
+- Email: `demo-founder@investorkitty.com`
+- Password: `DemoPassword123!`
 
 **Investor Account**
-- Email: `investor@investorkitty.demo`
-- Password: `demo123investor`
+- Email: `demo-investor@investorkitty.com`
+- Password: `DemoPassword123!`
+
+### Quick Demo Setup
+
+Initialize demo accounts with one click:
+
+```bash
+# Via Web UI (Easiest)
+http://localhost:3000/admin/setup
+
+# Via CLI script
+bash scripts/setup-demo.sh
+
+# Via API
+curl -X POST http://localhost:3000/api/setup-demo \
+  -H "x-setup-token: dev-token"
+```
 
 Use these credentials to explore the complete platform workflow, including discovery, matching, messaging, and deal tracking.
 
@@ -273,3 +289,4 @@ For support, email support@investorkitty.com or create an issue in this reposito
 ---
 
 **Built with ❤️ for founders, investors, and the startup ecosystem.**
+**Developed and maintainance: https://meloitte.com.**

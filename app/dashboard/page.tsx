@@ -47,7 +47,7 @@ export default function DashboardPage() {
             </div>
             <div className="flex gap-3">
               <Link href="/profile">
-                <Button variant="outline">Edit Profile</Button>
+                <Button variant="secondary">Edit Profile</Button>
               </Link>
               {isSeeker && (
                 <Link href="/add-a-project">
