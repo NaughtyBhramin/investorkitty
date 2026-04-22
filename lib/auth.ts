@@ -69,8 +69,8 @@ export const authOptions: AuthOptions = {
   ],
   session: {
     strategy: 'database',
-    maxAge: 30 * 24 * 60 * 60, // 30 days
-    updateAge: 24 * 60 * 60 // 24 hours
+    maxAge: 10 * 60, // 10 minutes
+    updateAge: 5 * 60 // 5 minutes
   },
   callbacks: {
     async session({ session, user }: { session: Session; user: any }) {

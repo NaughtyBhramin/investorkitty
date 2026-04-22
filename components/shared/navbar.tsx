@@ -127,6 +127,16 @@ export function Navbar() {
         <div className="hidden items-center gap-3 md:flex">
           {isAuthenticated ? (
             <>
+              <Link
+                href="/profile"
+                className={`rounded-full border px-4 py-2 text-sm font-semibold transition ${
+                  theme === 'dark'
+                    ? 'border-slate-600 bg-secondary text-white hover:border-brand-500 hover:text-brand-400'
+                    : 'border-slate-300 bg-white text-slate-900 hover:border-brand-500 hover:text-brand-600'
+                }`}
+              >
+                My Profile
+              </Link>
               <button
                 type="button"
                 className={`rounded-full border px-4 py-2 text-sm font-semibold transition ${
@@ -138,16 +148,6 @@ export function Navbar() {
               >
                 Logout
               </button>
-              <Link
-                href="/profile"
-                className={`rounded-full border px-4 py-2 text-sm font-semibold transition ${
-                  theme === 'dark'
-                    ? 'border-slate-600 bg-secondary text-white hover:border-brand-500 hover:text-brand-400'
-                    : 'border-slate-300 bg-white text-slate-900 hover:border-brand-500 hover:text-brand-600'
-                }`}
-              >
-                My Profile
-              </Link>
             </>
           ) : (
             <>
@@ -173,6 +173,21 @@ export function Navbar() {
               </Link>
             </>
           )}
+          <a
+            href="https://wa.me/919876543210?text=Hi%20InvestorsKitty%2C%20I%20need%20support"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="WhatsApp Support"
+            className={`inline-flex h-10 w-10 items-center justify-center rounded-full border transition ${
+              theme === 'dark'
+                ? 'border-green-600 bg-green-900/20 text-green-400 hover:border-green-500'
+                : 'border-green-300 bg-green-50 text-green-600 hover:border-green-500'
+            }`}
+          >
+            <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.411-2.392-1.476-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-5.031 1.378c-1.514.857-2.752 2.236-3.558 3.862-1.604 3.12-.472 6.75 1.635 8.73 1.17 1.024 2.688 1.678 4.32 1.885 1.632.207 3.318-.026 4.861-.999 2.516-1.694 4.155-4.532 4.113-7.635-.023-1.88-.635-3.646-1.733-5.148-1.098-1.502-2.684-2.659-4.487-3.038z"/>
+            </svg>
+          </a>
           <button
             aria-label="Toggle theme"
             className={`inline-flex h-10 w-10 items-center justify-center rounded-full border transition ${
@@ -231,6 +246,13 @@ export function Navbar() {
             <div className="flex flex-wrap gap-3 pt-2">
               {isAuthenticated ? (
                 <>
+                  <Link
+                    href="/profile"
+                    className="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-900 transition hover:border-brand-500 hover:text-brand-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    My Profile
+                  </Link>
                   <button
                     type="button"
                     className="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-900 transition hover:border-brand-500 hover:text-brand-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
@@ -241,13 +263,6 @@ export function Navbar() {
                   >
                     Logout
                   </button>
-                  <Link
-                    href="/profile"
-                    className="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-900 transition hover:border-brand-500 hover:text-brand-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    My Profile
-                  </Link>
                 </>
               ) : (
                 <>
@@ -267,6 +282,17 @@ export function Navbar() {
                   </Link>
                 </>
               )}
+              <a
+                href="https://wa.me/919876543210?text=Hi%20InvestorsKitty%2C%20I%20need%20support"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="WhatsApp Support"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-green-300 bg-green-50 text-green-600 transition hover:border-green-500 dark:border-green-600 dark:bg-green-900/20 dark:text-green-400"
+              >
+                <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.411-2.392-1.476-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-5.031 1.378c-1.514.857-2.752 2.236-3.558 3.862-1.604 3.12-.472 6.75 1.635 8.73 1.17 1.024 2.688 1.678 4.32 1.885 1.632.207 3.318-.026 4.861-.999 2.516-1.694 4.155-4.532 4.113-7.635-.023-1.88-.635-3.646-1.733-5.148-1.098-1.502-2.684-2.659-4.487-3.038z"/>
+                </svg>
+              </a>
             </div>
           </div>
         </div>

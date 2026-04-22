@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { signIn } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 
@@ -11,6 +11,12 @@ export default function RegisterPage() {
   const [status, setStatus] = useState<'idle' | 'saving' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
   const router = useRouter();
+  const { data: session } = useSession();
+
+  // Redirect if already logged in
+  if (session?.user?.id) {
+    router.push(session.user.role === 'INVESTOR' ? '/dashboard/investor' : '/dashboard/seeker');
+  }
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,6 +33,13 @@ export default function RegisterPage() {
     if (form.password.length < 8) {
       setStatus('error');
       setMessage('Password must be at least 8 characters long');
+      return;
+    }
+
+    // Prevent admin registration from public form
+    if (form.role === 'ADMIN') {
+      setStatus('error');
+      setMessage('Admin accounts cannot be created through this form');
       return;
     }
 
